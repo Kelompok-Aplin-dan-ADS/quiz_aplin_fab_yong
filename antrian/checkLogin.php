@@ -4,7 +4,6 @@
 	$username = $_POST["username"];
 	$password = $_POST["password"];
 
-	echo $password;
 	$sql = "SELECT * FROM user WHERE username = '$username' AND password='$password' ";
 	$result = $conn->query($sql);
 
@@ -14,16 +13,10 @@
 	if ($result->num_rows > 0) {
 		$_SESSION['user'] = $username;
 		$_SESSION['loket'] = $result2->fetch_assoc()["loket_id"];
-		$val = array(
-			"status"=>"1"
-		);
-		//echo json_encode($val);
-		//header('Location: dashboard.php');
+		$val = "1";
+		echo $val;
 	} else {
-		//header('Location: index.php');
-		$val = array(
-			"status"=>"0"
-		);
-		//echo json_encode($val);
+		$val = "0";
+		echo $val;
 	}
 ?>

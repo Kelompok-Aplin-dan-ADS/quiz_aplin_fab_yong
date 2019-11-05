@@ -41,18 +41,25 @@
 					username: $("input[name=username]").val(),
 					password: $("input[name=password]").val()
 				},
-				success: function(data){
-					console.log(data);
-					res = JSON.parse(data);
-					console.log(res['status']);
+				success: function(cob1){
+					console.log(cob1);
 					
-					//$(".container").html(result);
+					if(cob1=="1"){
+						masuk();
+					}
+					
 				}
 			})
 		});
 	});
-	function checkLogin() {
-		
+	function masuk() {
+		$.ajax({
+			method : "post",
+			url: "dashboard.php",
+			success: function (data) {
+				$(".container").html(data);
+			}
+		});
 			
 	}
 </script>
