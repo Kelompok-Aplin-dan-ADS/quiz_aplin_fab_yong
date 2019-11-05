@@ -15,5 +15,4 @@
 	$query = "UPDATE antrian SET loket_id='$loket' where antrian_id = $id";
 	$conn->query($query);
 
-	header('Location: dashboard.php');
 ?>

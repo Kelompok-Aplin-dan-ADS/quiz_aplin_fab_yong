@@ -6,23 +6,30 @@
 		header('Location: index.php');
 	}
 ?>
-
-<div class="container center-align">
-	<h1 class="white-text">
-		<?= $data['loket_nama']; ?>
-	</h1>
-	<br>
-	<div class="menu-container">
-		<h2>Antrian Sekarang <br>
-			<?= $nomor; ?>
-		</h2>
-		<br>
-		<a href="panggil.php" class="btn waves-effect waves-light">Panggil Antrian</a>
-	</div>
-</div>
+<div class="loket"></div>
 <script>
-	$(document).ready(function() {
-		
+	$.ajax({
+		method: "post",
+		url: "loket.php",
+		success: function (data) {
+			$(".loket").html(data);
+		}
 	});
+	function panggil(){
+		$.ajax({
+			method: "post",
+			url: "panggil.php",
+			success: function (data) {
+				$(".tempat").html(data["antrian_id"]);
+			}
+		});
+		$.ajax({
+			method: "post",
+			url: "loket.php",
+			success: function (data) {
+				$(".loket").html(data);
+			}
+		});
+	}
 </script>
 <?php require("footer.php"); ?>
