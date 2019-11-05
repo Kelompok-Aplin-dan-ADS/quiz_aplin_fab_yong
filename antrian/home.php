@@ -2,21 +2,38 @@
 	require("header.php");
 	include("getNomor.php");
 ?>
-
-<div class="container center-align">
-	<h1 class="white-text">
-		Ambil Nomor
-	</h1>
-	<br>
-	<h1> <?= $data["nomor"] ?> </h1>
-	<br>
-	<div class="menu-container">
-		<a href="ambilNomor.php" class="btn waves-effect waves-light"> Ambil Nomor</a>
-	</div>
-</div>
+<div class="con"></div>
 <script>
-	$(document).ready(function() {
-
+	$.ajax({
+		method: "post",
+		url: "nomor.php",
+		success: function (data) {
+			$(".con").html(data);
+		}
 	});
+	function ganti(){
+		$.ajax({
+			method: "post",
+			url: "ambilNomor.php",
+			success: function (data) {
+				$(".nomer").html(data["nomor"]);
+			}
+		});
+		$.ajax({
+			method: "post",
+			url: "getNomor.php",
+			success: function (data) {
+				$(".nomer").html(data["nomor"]);
+			}
+		});
+		$.ajax({
+		method: "post",
+		url: "nomor.php",
+		success: function (data) {
+			$(".con").html(data);
+		}
+	});
+	}
+		
 </script>
 <?php require("footer.php"); ?>

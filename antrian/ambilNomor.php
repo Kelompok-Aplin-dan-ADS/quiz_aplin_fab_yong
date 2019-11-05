@@ -11,5 +11,4 @@
 	$sql = "INSERT INTO antrian(antrian_nomor) VALUES ($nomor)";
 	$conn->query($sql);
 
-	header('Location: home.php');
 ?>
