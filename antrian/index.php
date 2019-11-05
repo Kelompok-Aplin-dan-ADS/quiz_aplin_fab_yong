@@ -14,7 +14,9 @@
 	</h3>
 	<br>
 	<div>
-		<form action="checkLogin.php" method="post">
+		<form action="checkLogin.php" method="post" onsubmit="checkLogin() return false;">
+		
+		</form>
 		<div class="row white">
 			<div class="input-field col s12">
 				<input id="username" type="text" name="username">
@@ -25,20 +27,33 @@
 				<label for="password" class>Password</label>
 			</div>
 		</div>
-		<button class="btn waves-effect waves-light" type="submit" name="action">masuk</button>
-		</form>
+		<button class="btn waves-effect waves-light btn-login" type="submit" name="action">masuk</button>
     </div>
 </div>
 <script>
 	$(document).ready(function() {
-		// $('.btn').click(function(){
-		// 	$.ajax({
-		// 		url: "dashboard.php", 
-		// 		success: function(result){
-		// 			$(".container").html(result);
-		// 		}
-		// 	})
-		// });
+		$('.btn-login').click(function(){
+			console.log($("input[name=username]").val());
+			$.ajax({
+				method : "post",
+				url: "checkLogin.php",
+				data:{
+					username: $("input[name=username]").val(),
+					password: $("input[name=password]").val()
+				},
+				success: function(data){
+					console.log(data);
+					res = JSON.parse(data);
+					console.log(res['status']);
+					
+					//$(".container").html(result);
+				}
+			})
+		});
 	});
+	function checkLogin() {
+		
+			
+	}
 </script>
 <?php require("footer.php"); ?>
